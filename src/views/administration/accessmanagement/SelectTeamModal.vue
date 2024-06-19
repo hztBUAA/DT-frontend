@@ -36,7 +36,7 @@
             title: this.$t('admin.team_name'),
             field: "name",
             sortable: true,
-            formatter(value, row, index) {
+            formatter(value) {
               return xssFilters.inHTMLData(common.valueWithDefault(value, ""));
             }
           }
