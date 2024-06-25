@@ -50,6 +50,7 @@
             formatter(value, row, index) {
               let url = xssFilters.uriInUnQuotedAttr("../components/" + row.component.uuid);
               return `<a href="${url}">${xssFilters.inHTMLData(value)}</a>`;
+              // return `<a href="www.baidu.com">baidu</a>`;
             }
           },
           {

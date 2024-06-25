@@ -1,5 +1,6 @@
 <template>
   <div class="animated fadeIn" v-permission="PERMISSIONS.VIEW_PORTFOLIO">
+  <!-- 项目的顶层卡片 -->
     <b-card :no-body="true" footer-class="px-3 py-2 card-footer-action">
       <b-card-body class="p-3 clearfix">
         <b-row>
@@ -95,6 +96,7 @@
         <b-link class="font-weight-bold font-xs btn-block text-muted" v-b-modal.projectDetailsModal>{{ $t('message.view_details') }} <i class="fa fa-angle-right float-right font-lg"></i></b-link>
       </div>
     </b-card>
+
     <b-tabs class="body-bg-color" style="border-left: 0; border-right:0; border-top:0 ">
       <b-tab class="body-bg-color overview-chart" style="border-left: 0; border-right:0; border-top:0 " active>
         <template v-slot:title><i class="fa fa-line-chart"></i> {{ $t('message.overview') }}</template>
@@ -123,30 +125,31 @@
     </b-tabs>
     <project-details-modal :project="cloneDeep(project)" v-on:projectUpdated="syncProjectFields"/>
     <project-properties-modal :uuid="this.uuid" />
-    <project-create-property-modal :uuid="this.uuid" />
+    <!-- <project-create-property-modal :uuid="this.uuid" /> -->
     <project-add-version-modal :uuid="this.uuid" />
+    <!-- <div>hzt</div> -->
   </div>
 </template>
 
 <script>
-  import common from "../../../shared/common"
-  import { cloneDeep } from 'lodash-es';
-  import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities'
-  import VueEasyPieChart from 'vue-easy-pie-chart'
-  import ProjectComponents from "./ProjectComponents";
-  import ProjectDependencyGraph from "./ProjectDependencyGraph";
-  import ProjectServices from "./ProjectServices";
-  import PortfolioWidgetRow from "../../dashboard/PortfolioWidgetRow";
-  import ProjectDashboard from "./ProjectDashboard";
-  import SeverityBarChart from "../../dashboard/SeverityBarChart";
-  import EventBus from '../../../shared/eventbus';
-  import permissionsMixin from "../../../mixins/permissionsMixin";
-  import ProjectDetailsModal from "./ProjectDetailsModal";
-  import ProjectPropertiesModal from "./ProjectPropertiesModal";
-  import ProjectCreatePropertyModal from "./ProjectCreatePropertyModal";
-  import ProjectAddVersionModal from "./ProjectAddVersionModal";
-  import ProjectFindings from "./ProjectFindings";
-  import ProjectPolicyViolations from "./ProjectPolicyViolations";
+  import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities';
+import { cloneDeep } from 'lodash-es';
+import VueEasyPieChart from 'vue-easy-pie-chart';
+import permissionsMixin from "../../../mixins/permissionsMixin";
+import common from "../../../shared/common";
+import EventBus from '../../../shared/eventbus';
+import PortfolioWidgetRow from "../../dashboard/PortfolioWidgetRow";
+import SeverityBarChart from "../../dashboard/SeverityBarChart";
+import ProjectAddVersionModal from "./ProjectAddVersionModal";
+import ProjectComponents from "./ProjectComponents";
+import ProjectCreatePropertyModal from "./ProjectCreatePropertyModal";
+import ProjectDashboard from "./ProjectDashboard";
+import ProjectDependencyGraph from "./ProjectDependencyGraph";
+import ProjectDetailsModal from "./ProjectDetailsModal";
+import ProjectFindings from "./ProjectFindings";
+import ProjectPolicyViolations from "./ProjectPolicyViolations";
+import ProjectPropertiesModal from "./ProjectPropertiesModal";
+import ProjectServices from "./ProjectServices";
 
   export default {
     mixins: [permissionsMixin],
